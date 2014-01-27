@@ -48,9 +48,17 @@ header {
 
 
 .renderWebGl {
+	width : 50%;
     float:left;
 }
 
 .codeWebGl {
+	width : 50%;	
     float: left;
+    padding: 10px 0 0 0;
+}
+.description{
+	margin: 10px 0;
+	padding: 0px 10px;	
+	line-height: 20px;
 }
