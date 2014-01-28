@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>WebGL - Second Example</title>
-		<meta name="description" content="">
-		<meta name="author" content="Murillo">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <title>WebGL - Second Example</title>
+    <meta name="description" content="">
+    <meta name="author" content="Murillo">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
 
-		<script src="../Library/js/jquery-1.10.1.min.js"></script>
-		<script src="../Library/js/Three.js"></script>
+    <script src="../Library/js/jquery-1.10.1.min.js"></script>
+    <script src="../Library/js/Three.js"></script>
 
-		<link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
-	</head>
+    <link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
+</head>
 
-	<body>
-		<header>
-			<h1><a href="../"><img src="../Library/images/WebGL.png" alt="WebGL" /></a></h1>
-		</header>
+<body>
+    <header>
+        <h1><a href="../">
+            <img src="../Library/images/WebGL.png" alt="WebGL" /></a></h1>
+    </header>
 
-		<div>
-			<div class="description">
-				This example we see three objects. One cube, one sphere and one sphere. Each object is in a certain position
-				determined by variable 'position.x', 'position.y' and 'position.z'. Also added light.
-			</div>
-			<div class="renderWebGl">
-				<div id="container"></div>
-			</div>
-			<div class="codeWebGl">
-				<pre>
+    <div>
+        <div class="description">
+            This example we see three objects. One cube, one sphere and one sphere. Each object is in a certain position 
+            determined by variable 'position.x', 'position.y' and 'position.z'. Also added light.
+		
+        </div>
+        <div class="renderWebGl">
+            <div id="container"></div>
+        </div>
+        <div class="codeWebGl">
+            <pre>
 
 
 var $container = $('#container');
@@ -72,8 +74,8 @@ camera.position.z = 35;
 renderer.render(scene, camera);
 
 		        </pre>
-			</div>
-			<script src="../Library/js/Examples/second-example.js" ></script>
-		</div>
-	</body>
+        </div>
+        <script src="../Library/js/Examples/second-example.js"></script>
+    </div>
+</body>
 </html>

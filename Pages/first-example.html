@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>WebGL - First Example</title>
-		<meta name="description" content="">
-		<meta name="author" content="Murillo">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <title>WebGL - First Example</title>
+    <meta name="description" content="">
+    <meta name="author" content="Murillo">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
 
-		<script src="../Library/js/jquery-1.10.1.min.js"></script>
-		<script src="../Library/js/Three.js"></script>
+    <script src="../Library/js/jquery-1.10.1.min.js"></script>
+    <script src="../Library/js/Three.js"></script>
 
-		<link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
 
-	</head>
+</head>
 
-	<body>
-		<header>
-			<h1><a href="../"><img src="../Library/images/WebGL.png" alt="WebGL" /></a></h1>
-		</header>
+<body>
+    <header>
+        <h1><a href="../">
+            <img src="../Library/images/WebGL.png" alt="WebGL" /></a></h1>
+    </header>
 
-		<div>
-			<div class="description">
-				We see this example a simple cube green. There is no light. The cube dosen't apper 3D
-				because which camera is right in front of the cube.
-			</div>
-			<div class="renderWebGl">
-				<div id="container"></div>
-			</div>
-			<div class="codeWebGl">
-				<pre>
+    <div>
+        <div class="description">
+            We see this example a simple cube green. There is no light. The cube dosen't apper 3D 
+            because which camera is right in front of the cube.
+		
+        </div>
+        <div class="renderWebGl">
+            <div id="container"></div>
+        </div>
+        <div class="codeWebGl">
+            <pre>
 		        	
 		        	
 		        	
@@ -50,8 +52,8 @@ scene.add(cubeGreen);
 camera.position.z = 3;
 renderer.render(scene, camera);
 		        </pre>
-			</div>
-			<script src="../Library/js/Examples/first-example.js" ></script>
-		</div>
-	</body>
+        </div>
+        <script src="../Library/js/Examples/first-example.js"></script>
+    </div>
+</body>
 </html>
