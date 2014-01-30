@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WebGL - Sixth Example</title>
+    <meta name="description" content="">
+    <meta name="author" content="Murillo">
+
+    <script src="../Library/js/jquery-1.10.1.min.js"></script>
+    <script src="../Library/js/Three.js"></script>
+    <script src="../Library/js/tween.min.js"></script>
+    <script src="../Library/js/RequestAnimationFrame.js"></script>
+    <script src="../Library/js/stats.min.js"></script>
+    <link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="../index.html">
+                <img src="../Library/images/WebGL.png" alt="WebGL" />
+            </a>
+        </h1>
+    </header>
+
+    <div>
+        <div class="description">
+            This example we created a simple animation with a colorful cube. For each face is set a different colour, but a each F5 the colours change. The code is below.
+        </div>
+        <div class="renderWebGl">
+            <div id="container">
+            </div>
+        </div>
+        <div class="codeWebGl">
+            <pre>
+var renderer, scene, camera, cube, conteiner;
+init();
+render();
+
+function init() {
+    conteiner = document.getElementById('container');
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(600, 400);
+    container.appendChild(renderer.domElement);
+
+    var geometry = new THREE.CubeGeometry(1, 1, 1);
+    for (var i = 0; i < geometry.faces.length; i++) {
+        geometry.faces[i].color.setHex(Math.random() * 0xffffff);
+    }
+
+    var material = new THREE.MeshBasicMaterial({
+        color: 0xffffff, vertexColors: THREE.FaceColors
+    });
+    cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 3;
+}
+
+function render() {
+    requestAnimationFrame(render);
+    cube.rotation.y += 0.01;
+    cube.rotation.x += 0.01;
+
+    renderer.render(scene, camera);
+}
+		    </pre>
+        </div>
+        <script src="../Library/js/Examples/sixth-example.js"></script>
+    </div>
+</body>
+</html>
+
