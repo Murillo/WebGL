@@ -16,17 +16,17 @@ function init() {
     group = new THREE.Object3D();
     scene.add(group);
 
-    var marsTexture = new THREE.Texture();
+    var webglTexture = new THREE.Texture();
     var loader = new THREE.ImageLoader();
     loader.addEventListener('load', function (event) {
-        marsTexture.image = event.content;
-        marsTexture.needsUpdate = true;
+        webglTexture.image = event.content;
+        webglTexture.needsUpdate = true;
     });
 
-    loader.load('../Library/images/texture-webgl.jpg');
+    loader.load('../Library/images/seventh-example/texture-webgl.jpg');
 
     var geometry = new THREE.CubeGeometry(10, 10, 10);
-    var material = new THREE.MeshBasicMaterial({ map: marsTexture, overdraw: true });
+    var material = new THREE.MeshBasicMaterial({ map: webglTexture, overdraw: true });
 
     var mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.set(5, 15, 10);

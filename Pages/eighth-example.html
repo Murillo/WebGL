@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WebGL - Eighth Example</title>
+    <meta name="description" content="">
+    <meta name="author" content="Murillo">
+
+    <script src="../Library/js/jquery-1.10.1.min.js"></script>
+    <script src="../Library/js/Three.js"></script>
+    <script src="../Library/js/tween.min.js"></script>
+    <script src="../Library/js/RequestAnimationFrame.js"></script>
+    <script src="../Library/js/stats.min.js"></script>
+    <link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="../index.html">
+                <img src="../Library/images/WebGL.png" alt="WebGL" />
+            </a>
+        </h1>
+    </header>
+
+    <div>
+        <div class="description">
+            This example was created several cubes with texture and a floor in the scenario. The cubes were created in a loop by setting your position dynamically. Also was defined the position and rotation of the camera. Important: Rotation is set in radians.
+        </div>
+        <div class="renderWebGl">
+            <div id="container">
+            </div>
+        </div>
+        <div class="codeWebGl">
+            <pre>
+var container, camera;
+var group, scene, renderer;
+var width = 600;
+var height = 400;
+
+init();
+render();
+
+function init() {
+
+    container = document.getElementById('container');
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    renderer.setClearColorHex(0xEEEEEE, 1);
+    container.appendChild(renderer.domElement);
+
+    camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
+    camera.position.set(10, 2, 20);
+    camera.rotation.x = 5 * (Math.PI / 180);
+
+    scene = new THREE.Scene();
+    scene.add(camera);
+
+    /* ********* Objects ***********  */
+
+    // Texture of cube
+    var boxTexture = new THREE.Texture();
+    var loader = new THREE.ImageLoader();
+    loader.addEventListener('load', function (event) {
+        boxTexture.image = event.content;
+        boxTexture.needsUpdate = true;
+    });
+    loader.load('../Library/images/eighth-example/box.jpg');
+
+    // Texture of plane
+    var planeTexture = new THREE.Texture();
+    var planeLoader = new THREE.ImageLoader();
+    planeLoader.addEventListener('load', function (event) {
+        planeTexture.image = event.content;
+        planeTexture.needsUpdate = true;
+    });
+    planeLoader.load('../Library/images/eighth-example/stone_texture.jpg');
+
+    // Creating cubes
+    var textureBox = "../Library/images/seventh-example/dice3.jpg";
+    for (var i = 0; i < 10; i++) {
+
+        var geometry = new THREE.CubeGeometry(1, 1, 1);
+        var diceMaterial = new THREE.MeshFaceMaterial(
+            new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture(textureBox) }));
+        var material = new THREE.MeshLambertMaterial({ map: boxTexture, overdraw: true });
+        var cubeGreen = new THREE.Mesh(geometry, material);
+        cubeGreen.position.set(
+            Math.floor((Math.random() * 15) + 1),
+            0,
+            Math.floor((Math.random() * 15) + 1)
+        );
+        scene.add(cubeGreen);
+    }
+
+    // Creating floor
+    var planeMaterial = new THREE.MeshLambertMaterial({ map: planeTexture, overdraw: true });
+    var planeGeometry = new THREE.PlaneGeometry(40, 30);
+    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.rotation.x = -Math.PI / 2;
+    plane.position.set(10, -1, 0);
+    scene.add(plane);
+
+    /* *****************************  */
+
+    /* ************* Light *********  */
+    var pointLight = new THREE.PointLight(0xFFFFFF);
+    pointLight.position.x = 10;
+    pointLight.position.y = 50;
+    pointLight.position.z = 130;
+    scene.add(pointLight);
+    /* *****************************  */
+}
+
+function render() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+}
+
+		    </pre>
+        </div>
+        <script src="../Library/js/Examples/eighth-example.js"></script>
+    </div>
+</body>
+</html>
+
