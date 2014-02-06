@@ -1,40 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>WebGL - Eighth Example</title>
-    <meta name="description" content="">
-    <meta name="author" content="Murillo">
-
-    <script src="../Library/js/jquery-1.10.1.min.js"></script>
-    <script src="../Library/js/Three.js"></script>
-    <script src="../Library/js/tween.min.js"></script>
-    <script src="../Library/js/RequestAnimationFrame.js"></script>
-    <script src="../Library/js/stats.min.js"></script>
-    <link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
-
-</head>
-
-<body>
-    <header>
-        <h1>
-            <a href="../index.html">
-                <img src="../Library/images/WebGL.png" alt="WebGL" />
-            </a>
-        </h1>
-    </header>
-
-    <div>
-        <div class="description">
-            This example was created several cubes with texture and a floor in the scenario. The cubes were created in a loop by setting your position dynamically. Also was defined the position and rotation of the camera. Important: Rotation is set in radians.
-        </div>
-        <div class="renderWebGl">
-            <div id="container">
-            </div>
-        </div>
-        <div class="codeWebGl">
-            <pre>
-var container, camera;
+﻿var container, camera;
 var group, scene, renderer;
 var width = 600;
 var height = 400;
@@ -58,7 +22,6 @@ function init() {
     scene.add(camera);
 
     /* ********* Objects ***********  */
-
     // Texture of cube
     var boxTexture = new THREE.Texture();
     var loader = new THREE.ImageLoader();
@@ -96,12 +59,11 @@ function init() {
 
     // Creating floor
     var planeMaterial = new THREE.MeshLambertMaterial({ map: planeTexture, overdraw: true });
-    var planeGeometry = new THREE.PlaneGeometry(40, 30);
+    var planeGeometry = new THREE.PlaneGeometry(40, 40);
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -Math.PI / 2;
-    plane.position.set(10, -0.5, 0);    
+    plane.position.set(10, -0.5, 0);
     scene.add(plane);
-
     /* *****************************  */
 
     /* ************* Light *********  */
@@ -111,6 +73,10 @@ function init() {
     pointLight.position.z = 130;
     scene.add(pointLight);
     /* *****************************  */
+
+
+    /* **************** Event that moves the camera ************ */
+    document.addEventListener("keydown", getKey);
 }
 
 function render() {
@@ -118,10 +84,21 @@ function render() {
     renderer.render(scene, camera);
 }
 
-		    </pre>
-        </div>
-        <script src="../Library/js/Examples/eighth-example.js"></script>
-    </div>
-</body>
-</html>
+function getKey(event) {
+    //  Left Arrow
+    if (event.keyCode == 37) {
+        camera.position.x -= 0.1;
 
+    // Up arrow 
+    } else if (event.keyCode == 38) {
+        camera.position.z -= 0.1;
+
+    // Right Arrow 
+    } else if (event.keyCode == 39) {
+        camera.position.x += 0.1;
+
+    // Down Arrow
+    } else if (event.keyCode == 40) {
+        camera.position.z += 0.1;
+    }
+}

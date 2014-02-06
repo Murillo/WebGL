@@ -63,7 +63,7 @@ function init() {
     var planeGeometry = new THREE.PlaneGeometry(40, 30);
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -Math.PI / 2;
-    plane.position.set(10, -1, 0);
+    plane.position.set(10, -0.5, 0);
     scene.add(plane);
 
     /* *****************************  */
