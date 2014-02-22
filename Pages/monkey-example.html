@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WebGL - Monkey Example</title>
+    <meta name="description" content="">
+    <meta name="author" content="Murillo">
+
+    <script src="../Library/js/jquery-1.10.1.min.js"></script>
+    <script src="../Library/js/Three.js"></script>
+    <script src="../Library/js/tween.min.js"></script>
+    <script src="../Library/js/RequestAnimationFrame.js"></script>
+    <script src="../Library/js/stats.min.js"></script>
+    <script src="../Library/js/OrbitControls.js"></script>
+    <link href="../Library/css/styles.css" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="../index.html">
+                <img src="../Library/images/WebGL.png" alt="WebGL" />
+            </a>
+        </h1>
+    </header>
+    <div>
+        <div class="description">
+            In that example was added an object in the form of a monkey. This monkey was created in the Blender software and exported to three.js. Beyond of object, the color was exported too.
+        </div>
+        <div class="renderWebGl">
+            <div id="container">
+
+            </div>
+        </div>
+        <div class="codeWebGl">
+            <pre>
+var container, camera, controls;
+var group, scene, renderer;
+var width = 600;
+var height = 400;
+
+init();
+render();
+
+function init() {
+
+    container = document.getElementById('container');
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    renderer.setClearColorHex(0x333F47, 1);
+    renderer.shadowMapEnabled = true;
+    container.appendChild(renderer.domElement);
+
+    /* ********* Camera ***********  */
+    camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 20000);
+    camera.position.set(2, 2, 6);
+
+    scene = new THREE.Scene();
+    scene.add(camera);
+
+    /* ********* Objects ***********  */
+    var loader = new THREE.JSONLoader();
+    loader.load("../Library/js/Examples/models/monkey-example/monkey.js", function (geometry, materials) {
+        mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        mesh.castShadow = true;
+        mesh.position.set(-0.5, -0.5, 0);
+        scene.add(mesh);
+    });
+    /* *****************************  */
+
+
+    /* ************* Spot Light *********  */
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(-30, 70, 40);
+    spotLight.castShadow = true;
+    scene.add(spotLight)
+    /* *****************************  */
+
+
+    /* ********* OrbitControls ***********  */
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+}
+
+function render() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+    controls.update();
+}
+		    </pre>
+        </div>
+        <script src="../Library/js/Examples/monkey-example.js"></script>
+    </div>
+</body>
+</html>
+

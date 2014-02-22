@@ -1,4 +1,4 @@
 WebGL
 =====
 
-Some WebGL tests
+Some WebGL tests with the Three.js framework
